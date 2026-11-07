@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="pa">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#171511">
+<meta name="description" content="Gurbani & Sikhi, an offline-friendly Sikh practice companion.">
+<title>Gurbani &amp; Sikhi</title>
+<style>
+:root{color-scheme:dark;--bg:#171511;--panel:#24211b;--panel2:#302a20;--gold:#c6a064;--cream:#f1e8d7;--muted:#b5aa98;--line:#443b2d;--reader-size:25px}
+*{box-sizing:border-box}html{background:var(--bg)}body{margin:0;background:var(--bg);color:var(--cream);font-family:Georgia,"Noto Sans Gurmukhi","Raavi",serif;-webkit-tap-highlight-color:transparent}
+button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+header{padding:22px 20px 16px;background:linear-gradient(145deg,#302719,#171511 75%);border-bottom:1px solid var(--line)}
+.brand{color:var(--gold);font:12px Arial,sans-serif;letter-spacing:3px;text-transform:uppercase}.language-bar{display:flex;align-items:center;gap:9px;margin-top:13px;font:12px Arial,sans-serif;color:var(--muted)}.language-bar select,.language-select{background:#211e18;color:var(--cream);border:1px solid var(--line);border-radius:9px;padding:9px;font:14px Arial,sans-serif}.language-bar select{min-width:150px}
+h1{font-size:28px;font-weight:500;margin:9px 0 4px}.sub{color:var(--muted);font:13px/1.6 Arial,sans-serif}
+main{padding:17px 16px 104px;max-width:720px;margin:auto}
+.greeting{font-size:14px;color:var(--muted);margin:5px 2px 16px}
+.hero{padding:21px;border:1px solid #705b39;border-radius:18px;background:radial-gradient(circle at top right,#514027,#2a241a 68%);margin-bottom:19px}
+.eyebrow,.section{font:11px Arial,sans-serif;letter-spacing:2px;color:var(--gold);text-transform:uppercase}
+.hero h2{font-size:22px;font-weight:500;margin:10px 0}.hero p{font-size:15px;line-height:1.8;color:#e1d4bd;margin:0}
+.section{margin:23px 3px 11px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.tile{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:16px 14px;min-height:110px;color:var(--cream);text-align:left}
+.tile .ico{font-size:22px;display:block;margin-bottom:10px}.tile strong{font-size:15px;font-weight:500;display:block}.tile small{display:block;color:var(--muted);font:12px Arial,sans-serif;margin-top:5px}
+.wide{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;color:var(--cream);text-align:left;margin:6px 0}
+.wide small{display:block;color:var(--muted);font:12px/1.5 Arial,sans-serif;margin-top:5px}
+input[type=search],input[type=number],input[type=text]{width:100%;padding:14px;border-radius:12px;border:1px solid var(--line);background:#211e18;color:var(--cream);font-size:16px;outline:none}
+.pangti{font-size:var(--reader-size);line-height:2.1;text-align:center;color:#f3dfb8;margin:22px 0 10px;overflow-wrap:anywhere}
+.note{text-align:center;color:var(--muted);font:12px/1.65 Arial,sans-serif;margin:18px 4px}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#211e19;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:9px 3px calc(9px + env(safe-area-inset-bottom));z-index:4}
+.nav button{background:none;border:0;color:var(--muted);font:11px Arial,sans-serif;padding:4px 7px;min-width:48px}
+.nav button span{display:block;font-size:19px;margin-bottom:4px}.nav button.active{color:var(--gold)}
+.screen{display:none}.screen.active{display:block}.back{border:0;background:none;color:var(--gold);padding:8px 0;font-size:14px}
+.pill{display:inline-block;border:1px solid #76603c;border-radius:20px;color:var(--gold);font:10px Arial,sans-serif;letter-spacing:1px;padding:5px 9px;text-transform:uppercase}
+.counter{text-align:center;padding:25px 15px}.count{font-size:58px;color:var(--gold);margin:18px}
+.round{width:150px;height:150px;border-radius:100%;border:1px solid var(--gold);background:radial-gradient(#44351f,#211d17);color:var(--cream);font-size:20px}
+.smallbtn{background:#3a3021;border:1px solid #76603c;border-radius:20px;color:var(--cream);padding:9px 15px;margin:6px 4px}
+.reader-tools{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap;margin:14px 0}
+.reader-card{padding:16px 12px;background:#211e18;border:1px solid var(--line);border-radius:15px}
+.progress-track{height:7px;background:#393126;border-radius:9px;overflow:hidden}.progress-fill{height:7px;background:var(--gold);width:0}
+.empty{padding:20px 12px;text-align:center;color:var(--muted);line-height:1.7;background:var(--panel);border:1px solid var(--line);border-radius:14px}
+.settings-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 2px;border-bottom:1px solid var(--line)}
+.settings-row button{min-width:42px}
+@media(min-width:600px){main{padding-left:24px;padding-right:24px}.grid{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+<header><div class="brand">ੴ • Ik Oankar</div><h1>Gurbani &amp; Sikhi</h1><div class="sub" data-i18n="tagline">A peaceful space for daily connection</div><div class="language-bar"><label for="appLanguage" data-i18n="appLanguage">App language</label><select id="appLanguage" onchange="setAppLanguage(this.value)"><option value="pa">ਪੰਜਾਬੀ</option><option value="en">English</option><option value="hi">हिन्दी</option></select></div></header>
+<main>
+<section id="home" class="screen active">
+ <div class="greeting">ਵਾਹਿਗੁਰੂ ਜੀ ਕਾ ਖਾਲਸਾ · ਵਾਹਿਗੁਰੂ ਜੀ ਕੀ ਫਤਹਿ</div>
+ <div class="hero"><div class="eyebrow">A moment of reflection</div><h2>Let your day begin with remembrance</h2><p>Make a little time for Gurbani, Naam Simran and gratitude.</p></div>
+ <div class="section">Daily practice</div>
+ <div class="grid">
+  <button class="tile" onclick="show('nitnem')"><span class="ico">📖</span><strong>Nitnem</strong><small>Daily Banis</small></button>
+  <button class="tile" onclick="show('search')"><span class="ico">⌕</span><strong>Gurbani Search</strong><small>Search Gurmukhi text</small></button>
+  <button class="tile" onclick="show('paath')"><span class="ico">☼</span><strong>Sehaj Paath</strong><small>Reading progress</small></button>
+  <button class="tile" onclick="show('simran')"><span class="ico">📿</span><strong>Naam Simran</strong><small>Digital mala</small></button>
+  <button class="tile" onclick="show('collections')"><span class="ico">📚</span><strong>Scripture Library</strong><small>Three granths</small></button>
+  <button class="tile" onclick="show('audio')"><span class="ico">♫</span><strong>Audio Search</strong><small>Kirtan catalogue</small></button>
+ </div>
+ <div class="section">Your library</div>
+ <button class="wide" onclick="show('saved')">♡ &nbsp; Saved favourites <span style="float:right;color:var(--gold)">›</span><small>Your saved Banis and search entries</small></button>
+ <button class="wide" onclick="show('settings')">⚙ &nbsp; Reader settings <span style="float:right;color:var(--gold)">›</span><small>Adjust Gurmukhi reading size</small></button>
+ <div class="note">Content notice: this starter build does not contain a complete verified Gurbani database, full Nitnem text, translations, audio or a live Hukamnama feed. Demo entries are labelled.</div>
+</section>
+
+<section id="nitnem" class="screen">
+ <button class="back" onclick="goBack()">← Back</button><div class="section">Daily Banis</div>
+ <div id="baniList"></div>
+ <p class="note">These are navigation entries only. Full Bani text is not included until a verified content source is added.</p>
+</section>
+
+<section id="reader" class="screen">
+ <button class="back" onclick="goBack()">← Back to list</button>
+ <div class="section" data-i18n="reader">Reader</div>
+ <div class="settings-row"><label for="readerMeaningLanguage" data-i18n="meaningLanguage">Meaning language</label><select id="readerMeaningLanguage" class="language-select" onchange="setMeaningLanguage(this.value)"><option value="pa">ਪੰਜਾਬੀ</option><option value="en">English</option><option value="hi">हिन्दी</option></select></div>
+ <div class="reader-card">
+  <div id="readerTitle" style="text-align:center;font-size:20px;margin:6px 0 12px"></div>
+  <div style="text-align:center"><span class="pill">Text pack required</span></div>
+  <p class="note" id="readerContentNotice">The verified text for this Bani has not yet been installed. This reader will display the original Gurmukhi text here when an authenticated, properly attributed content pack is added. No substitute or invented Gurbani is shown.</p><div class="empty" id="meaningNotice"></div>
+  <div class="reader-tools"><button class="smallbtn" onclick="changeFont(-1)">A−</button><button class="smallbtn" onclick="changeFont(1)">A+</button><button class="smallbtn" id="readerSave" onclick="toggleReaderSave()">♡ Save</button></div>
+ </div>
+ <div class="reader-tools"><button class="smallbtn" onclick="moveBani(-1)">← Previous</button><button class="smallbtn" onclick="moveBani(1)">Next →</button></div>
+</section>
+
+<section id="search" class="screen">
+ <button class="back" onclick="goBack()">← Back</button><div class="section">Gurbani Search</div>
+ <input type="search" id="q" placeholder="Search Gurmukhi or title…" autocomplete="off" oninput="searchText()">
+ <div id="results"></div>
+ <p class="note">Search currently covers only the small demo index below, not the complete Sri Guru Granth Sahib Ji. Gurmukhi text is normalized before matching.</p>
+</section>
+
+
+<section id="collections" class="screen">
+ <button class="back" onclick="goBack()">← Back</button><div class="section">Scripture Library</div>
+ <p class="note">All three Granths now have dedicated library entries. Open a source reference or choose a meaning language. Full text and verified meanings are not bundled yet.</p>
+ <button class="wide" onclick="openCollection('dasam')"><strong>ੴ Sri Dasam Granth Sahib</strong><small>Giani Narain Singh Ji steek · source references</small></button>
+ <button class="wide" onclick="openCollection('sarbloh')"><strong>⚔ Sri Sarbloh Granth</strong><small>Sunpuran Steek · Baba Santa Singh Ji edition reference</small></button>
+ <button class="wide" onclick="openCollection('suraj')"><strong>☀ Sri Gur Pratap Suraj Granth</strong><small>Kavi Santokh Singh Ji · Suraj Prakash references</small></button>
+ <div id="collectionDetail"></div>
+</section>
+
+<section id="audio" class="screen">
+ <button class="back" onclick="goBack()">← Back</button><div class="section">Audio Search</div>
+ <input id="audioQ" type="search" placeholder="Search kirtan, shabad, raagi or Bani…" oninput="searchAudio()">
+ <div class="reader-tools">
+  <button class="smallbtn" onclick="setAudioFilter('all')">All audio</button>
+  <button class="smallbtn" onclick="setAudioFilter('kirtan')">Kirtan</button>
+  <button class="smallbtn" onclick="setAudioFilter('katha')">Katha</button>
+  <button class="smallbtn" onclick="setAudioFilter('bani')">Bani recitation</button>
+ </div>
+ <div id="audioResults"></div>
+ <div class="note">Audio catalogue is not connected yet. This screen is the search interface only. No recordings have been copied or bundled. Future tracks need a verified source, rights/permission, performer credit and stable audio URL before playback or offline download is enabled.</div>
+</section>
+
+<section id="collectionReader" class="screen">
+ <button class="back" onclick="goBack()">← Back to library</button>
+ <div class="section" id="collectionHeading">Collection</div>
+ <div class="reader-card">
+  <div class="sub">GRANTH SOURCE AND EDITION REFERENCES</div>
+  <select id="editionSelect" onchange="showEditionNote()" style="width:100%;padding:12px;margin-top:8px;border-radius:10px;background:#211e18;color:var(--cream);border:1px solid var(--line)">
+   <option value="primary">Main source / edition</option>
+   <option value="research">Additional digital reference</option>
+  </select>
+  <p id="editionNote" class="note"></p>
+  <div class="section" data-i18n="textMeanings">Text and meanings</div><div class="settings-row"><label for="collectionMeaningLanguage" data-i18n="meaningLanguage">Meaning language</label><select id="collectionMeaningLanguage" class="language-select" onchange="setMeaningLanguage(this.value)"><option value="pa">ਪੰਜਾਬੀ</option><option value="en">English</option><option value="hi">हिन्दी</option></select></div>
+  <div class="empty" id="collectionMeaningNotice">This Granth has its own library entry and source references. Original Gurmukhi text and Punjabi, English and Hindi meanings will appear here only after the exact edition is obtained, reuse rights are checked, and the text and translations are reviewed. Choose a language above to set the language you want to read.</div>
+  <div class="reader-tools"><button class="smallbtn" onclick="show('search')">Search demo index</button><button class="smallbtn" onclick="show('saved')">Saved items</button></div>
+ </div>
+</section>
+
+<section id="paath" class="screen">
+ <button class="back" onclick="goBack()">← Back</button><div class="section">Sehaj Paath</div>
+ <div class="hero"><div class="eyebrow">Your reading journey</div><h2>Build a steady habit</h2><p>Record your progress. Your number is saved on this device.</p></div>
+ <label class="sub" for="pages">Pages completed (out of 1430)</label><input id="pages" type="number" min="0" max="1430" value="0" onchange="savePages()">
+ <p id="progress" class="pangti">0 / 1430</p><div class="progress-track"><div id="bar" class="progress-fill"></div></div>
+ <p class="note">The page count is a personal tracker, not a connection to an official Paath record.</p>
+</section>
+
+<section id="simran" class="screen">
+ <button class="back" onclick="goBack()">← Back</button><div class="section">Naam Simran • Digital Mala</div>
+ <div class="counter"><div class="sub">Your jaap count</div><div id="count" class="count">0</div><button class="round" onclick="addCount()" aria-label="Add one to Naam Simran count">ਵਾਹਿਗੁਰੂ</button><br><button class="smallbtn" onclick="resetCount()">Reset count</button></div>
+</section>
+
+<section id="saved" class="screen">
+ <button class="back" onclick="goBack()">← Back</button><div class="section">Saved favourites</div><div id="savedList"></div>
+</section>
+
+<section id="settings" class="screen">
+ <button class="back" onclick="goBack()">← Back</button><div class="section" data-i18n="readerSettings">Reader settings</div>
+ <div class="settings-row"><div><strong data-i18n="appLanguage">App language</strong><div class="sub" data-i18n="appLanguageHelp">Choose Punjabi, English or Hindi for app menus</div></div><select class="language-select" id="settingsLanguage" onchange="setAppLanguage(this.value)"><option value="pa">ਪੰਜਾਬੀ</option><option value="en">English</option><option value="hi">हिन्दी</option></select></div>
+ <div class="settings-row"><div><strong data-i18n="meaningLanguage">Meaning language</strong><div class="sub" data-i18n="meaningLanguageHelp">Choose the language for verified explanations</div></div><select class="language-select" id="settingsMeaningLanguage" onchange="setMeaningLanguage(this.value)"><option value="pa">ਪੰਜਾਬੀ</option><option value="en">English</option><option value="hi">हिन्दी</option></select></div>
+ <div class="settings-row"><div><strong>Gurmukhi text size</strong><div class="sub">Adjust reader display</div></div><div><button class="smallbtn" onclick="changeFont(-1)">A−</button><button class="smallbtn" onclick="changeFont(1)">A+</button></div></div>
+ <p id="fontLabel" class="note">Text size: 25 px</p>
+ <div class="settings-row"><div><strong>Local data</strong><div class="sub">Bookmarks, count and progress stay on this device</div></div><span class="pill">Offline</span></div>
+</section>
+
+<section id="hukam" class="screen">
+ <button class="back" onclick="goBack()">← Back</button><div class="section">Daily Hukamnama</div>
+ <div class="empty"><strong>Live Hukamnama is not connected yet.</strong><br><br>This version does not display an unverified or outdated Hukamnama. An authorized source integration is needed.</div>
+ <a class="wide" style="display:block;text-decoration:none;margin-top:12px" href="https://sgpc.net/" target="_blank" rel="noopener">Visit SGPC website ↗</a>
+</section>
+</main>
+<nav class="nav" aria-label="Main navigation" style="overflow-x:auto">
+ <button data-nav="home" data-label="home" onclick="show('home')"><span>⌂</span>Home</button>
+ <button data-nav="collections" data-label="library" onclick="show('collections')"><span>▤</span>Library</button>
+ <button data-nav="search" data-label="search" onclick="show('search')"><span>⌕</span>Search</button>
+ <button data-nav="audio" data-label="audio" onclick="show('audio')"><span>♫</span>Audio</button>
+ <button data-nav="saved" data-label="saved" onclick="show('saved')"><span>♡</span>Saved</button>
+</nav>
+<script>
+'use strict';
+
+const languageNames={pa:'ਪੰਜਾਬੀ',en:'English',hi:'हिन्दी'};
+const uiText={
+ en:{tagline:'A peaceful space for daily connection',appLanguage:'App language',appLanguageHelp:'Choose Punjabi, English or Hindi for app menus',meaningLanguage:'Meaning language',meaningLanguageHelp:'Choose the language for verified explanations',reader:'Reader',textMeanings:'Text and meanings',readerSettings:'Reader settings',home:'Home',library:'Library',search:'Search',audio:'Audio',saved:'Saved',dailyPractice:'Daily practice',nitnem:'Nitnem',dailyBanis:'Daily Banis',scriptureLibrary:'Scripture Library',audioSearch:'Audio Search',savedFavourites:'Saved favourites'},
+ pa:{tagline:'ਰੋਜ਼ਾਨਾ ਜੁੜਾਅ ਲਈ ਇੱਕ ਸ਼ਾਂਤ ਥਾਂ',appLanguage:'ਐਪ ਦੀ ਭਾਸ਼ਾ',appLanguageHelp:'ਐਪ ਲਈ ਪੰਜਾਬੀ, ਅੰਗਰੇਜ਼ੀ ਜਾਂ ਹਿੰਦੀ ਚੁਣੋ',meaningLanguage:'ਅਰਥਾਂ ਦੀ ਭਾਸ਼ਾ',meaningLanguageHelp:'ਪ੍ਰਮਾਣਿਤ ਵਿਆਖਿਆਵਾਂ ਲਈ ਭਾਸ਼ਾ ਚੁਣੋ',reader:'ਪਾਠ',textMeanings:'ਮੂਲ ਪਾਠ ਅਤੇ ਅਰਥ',readerSettings:'ਪਾਠ ਸੈਟਿੰਗਾਂ',home:'ਮੁੱਖ ਪੰਨਾ',library:'ਗ੍ਰੰਥ ਸੰਗ੍ਰਹਿ',search:'ਖੋਜ',audio:'ਆਡੀਓ',saved:'ਸੰਭਾਲੇ',dailyPractice:'ਰੋਜ਼ਾਨਾ ਅਭਿਆਸ',nitnem:'ਨਿਤਨੇਮ',dailyBanis:'ਰੋਜ਼ਾਨਾ ਬਾਣੀਆਂ',scriptureLibrary:'ਗ੍ਰੰਥ ਲਾਇਬ੍ਰੇਰੀ',audioSearch:'ਆਡੀਓ ਖੋਜ',savedFavourites:'ਸੰਭਾਲੀਆਂ ਮਨਪਸੰਦ ਚੀਜ਼ਾਂ'},
+ hi:{tagline:'रोज़ाना जुड़ने के लिए एक शांत स्थान',appLanguage:'ऐप की भाषा',appLanguageHelp:'ऐप के लिए पंजाबी, अंग्रेज़ी या हिंदी चुनें',meaningLanguage:'अर्थ की भाषा',meaningLanguageHelp:'प्रमाणित व्याख्याओं के लिए भाषा चुनें',reader:'पाठ',textMeanings:'मूल पाठ और अर्थ',readerSettings:'पाठ सेटिंग्स',home:'मुखपृष्ठ',library:'ग्रंथ पुस्तकालय',search:'खोजें',audio:'ऑडियो',saved:'सहेजे गए',dailyPractice:'दैनिक अभ्यास',nitnem:'नितनेम',dailyBanis:'दैनिक बाणियाँ',scriptureLibrary:'ग्रंथ पुस्तकालय',audioSearch:'ऑडियो खोज',savedFavourites:'पसंदीदा संग्रह'}
+};
+let appLanguage=localStorage.getItem('appLanguage')||'en';
+let meaningLanguage=localStorage.getItem('meaningLanguage')||'pa';
+function setAppLanguage(lang){if(!languageNames[lang])return;appLanguage=lang;localStorage.setItem('appLanguage',lang);document.documentElement.lang=lang==='pa'?'pa':lang;document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.dataset.i18n;if(uiText[lang][key])el.textContent=uiText[lang][key]});['appLanguage','settingsLanguage'].forEach(id=>{if($(id))$(id).value=lang});document.querySelectorAll('[data-nav]').forEach(el=>{const key=el.dataset.label;if(key&&uiText[lang][key]){const icon=el.querySelector('span');el.lastChild.textContent=uiText[lang][key];}});}
+function setMeaningLanguage(lang){if(!languageNames[lang])return;meaningLanguage=lang;localStorage.setItem('meaningLanguage',lang);['readerMeaningLanguage','collectionMeaningLanguage','settingsMeaningLanguage'].forEach(id=>{if($(id))$(id).value=lang});renderMeaningNotices()}
+function renderMeaningNotices(){const messages={pa:'ਇਸ ਭਾਸ਼ਾ ਵਿੱਚ ਪ੍ਰਮਾਣਿਤ ਅਰਥਾਂ ਵਾਲਾ ਸਮੱਗਰੀ ਪੈਕ ਹਾਲੇ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤਾ ਗਿਆ। ਅਰਥ ਉਪਲਬਧ ਹੋਣ ਤੇ ਉਨ੍ਹਾਂ ਦਾ ਸਰੋਤ ਅਤੇ ਅਨੁਵਾਦਕ ਦਰਸਾਇਆ ਜਾਵੇਗਾ।',en:'A verified meanings pack in this language has not been added yet. When meanings are available, their source and translator will be shown.',hi:'इस भाषा में प्रमाणित अर्थों का सामग्री पैक अभी जोड़ा नहीं गया है। अर्थ उपलब्ध होने पर उनका स्रोत और अनुवादक दिखाया जाएगा।'};const msg=messages[meaningLanguage];if($('meaningNotice'))$('meaningNotice').textContent=msg;if($('collectionMeaningNotice'))$('collectionMeaningNotice').textContent=msg;}
+
+const collectionSources = {
+ dasam: {
+  title:'Sri Dasam Granth Sahib Ji',
+  primary:{label:'Internet Archive · Complete Steek by Giani Narain Singh Ji (user-shared link)',url:'https://share.google/eSqGz0ZzH3vkesYKB',note:'User-provided reference: Sri Dasam Granth Sahib Ji Complete Steek, searchable PDF, attributed to Giani Narain Singh Ji. The Google share link has not yet been resolved inside this build. Open the source link to check access and exact edition details.'},
+  research:{label:'SriDasam.org',url:'https://sridasam.org/',note:'External reading reference for Sri Dasam Granth. This app links out rather than copying the site text, translations or page layout. Reuse permissions for each edition and translation must be checked separately.'}
+ },
+ sarbloh: {
+  title:'Sri Sarbloh Granth Sahib Ji',
+  primary:{label:'Internet Archive · Sunpuran Steek (user-shared link)',url:'https://share.google/Oc3idepyIPDJMESC9',note:'User-provided reference: Sunpuran Steek Sri Sarbloh Granth Sahib Ji, DiscoverSikhism.com / Internet Archive. The shared link has not yet been resolved inside this build. Verify the exact edition, author credit and reuse terms before importing its pages.'},
+  research:{label:'Vidhia · Complete Sri Sarbloh Granth Sahib Ji Steek',url:'https://vidhia.com/',note:'Vidhia catalogue lists a complete Sri Sarbloh Granth Sahib Ji Steek and a two-part Sampooran Steek PDF. This is a catalogue reference only; the exact file, edition, completeness and reuse permission still need review.'}
+ },
+ suraj: {
+  title:'Sri Gur Pratap Suraj Granth Sahib Ji',
+  primary:{label:'User-shared source link · Suraj Prakash',url:'https://share.google/ElWywM5l0yzVvVqzm',note:'User-provided source link for the third Granth. Its destination has not yet been resolved inside this build. Verify whether it is the original Granth, a steek, or a particular volume/edition before importing.'},
+  research:{label:'Sikhitihas · Suraj Granth edition notes',url:'https://sikhitihas.org/granths/suraj-granth/',note:'This reference describes the Suraj Granth and an edition with Bhai Vir Singh glosses. The page warns that its converted Unicode text has not been checked and some Punjabi/English meanings are machine translations awaiting review. Do not label these as verified.'}
+ }
+};
+let currentCollection='dasam', audioFilter='all';
+function openCollection(id){currentCollection=id;const c=collectionSources[id];$('collectionHeading').textContent=c.title;$('editionSelect').value='primary';showEditionNote();renderMeaningNotices();show('collectionReader')}
+function showEditionNote(){const c=collectionSources[currentCollection],item=$('editionSelect').value==='research'?c.research:c.primary;$('editionNote').innerHTML=escapeHtml(item.note)+'<br><br><a href="'+item.url+'" target="_blank" rel="noopener" style="color:var(--gold)">'+escapeHtml(item.label)+' ↗</a>'}
+const audioIndex=[]; // Empty until recordings are licensed and indexed.
+function setAudioFilter(f){audioFilter=f;searchAudio()}
+function searchAudio(){const q=normalizeGurmukhi($('audioQ').value);const matches=audioIndex.filter(x=>(audioFilter==='all'||x.type===audioFilter)&&normalizeGurmukhi([x.title,x.performer,x.source,x.tags].join(' ')).includes(q));$('audioResults').innerHTML=matches.length?matches.map(x=>'<div class="wide"><strong>'+escapeHtml(x.title)+'</strong><small>'+escapeHtml(x.performer)+' · '+escapeHtml(x.source)+'</small></div>').join(''):'<div class="empty">No indexed recordings yet. The audio catalogue will appear here after permitted recordings and metadata are added.</div>'}
+
+const banis=['Japji Sahib','Jaap Sahib','Tav-Prasad Savaiye','Chaupai Sahib','Anand Sahib','Rehras Sahib','Kirtan Sohila'];
+// Demo-only search records. Add verified content through a separately reviewed content pack.
+const demoIndex=[
+ {id:'demo-mool-mantar',title:'Mool Mantar • demo search record',text:'ੴ ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ ਨਿਰਭਉ ਨਿਰਵੈਰੁ',kind:'Gurmukhi sample'},
+ {id:'demo-waheguru',title:'Naam Simran • demo search record',text:'ਵਾਹਿਗੁਰੂ',kind:'Search demonstration'},
+ {id:'demo-satnam',title:'Gurmukhi search • demo record',text:'ਸਤਿ ਨਾਮੁ',kind:'Search demonstration'}
+];
+const $=id=>document.getElementById(id);
+let currentScreen='home',previousScreen='home',currentBani=0;
+function show(id){if(!$(id))return; if(currentScreen!==id)previousScreen=currentScreen;currentScreen=id;document.querySelectorAll('.screen').forEach(x=>x.classList.toggle('active',x.id===id));document.querySelectorAll('[data-nav]').forEach(x=>x.classList.toggle('active',x.dataset.nav===id));if(id==='saved')renderSaved();if(id==='settings')updateFontLabel();window.scrollTo(0,0)}
+function goBack(){if(currentScreen==='reader'){show('nitnem');return}show(currentScreen==='home'?'home':previousScreen==='reader'?'nitnem':'home')}
+function normalizeGurmukhi(s){return String(s||'').normalize('NFC').toLocaleLowerCase().replace(/[\u200b-\u200f\ufeff]/g,'').replace(/\s+/g,' ').trim()}
+function renderBaniList(){ $('baniList').innerHTML=banis.map((b,i)=>`<button class="wide" onclick="openReader(${i})"><strong>${b}</strong><small>Open reader · verified text pack required</small><span style="float:right;color:var(--gold)">›</span></button>`).join('')}
+function openReader(i){currentBani=Math.max(0,Math.min(banis.length-1,i));$('readerTitle').textContent=banis[currentBani];updateReaderSave();renderMeaningNotices();show('reader')}
+function moveBani(delta){openReader((currentBani+delta+banis.length)%banis.length)}
+function searchText(){const q=normalizeGurmukhi($('q').value);const out=$('results');if(!q){out.innerHTML='';return}const found=demoIndex.filter(s=>normalizeGurmukhi(s.title+' '+s.text+' '+s.kind).includes(q));out.innerHTML=found.length?found.map(s=>`<div class="wide"><strong>${escapeHtml(s.title)}</strong><div class="pangti">${escapeHtml(s.text)}</div><small>${escapeHtml(s.kind)}</small><button class="smallbtn" onclick="toggleSavedDemo('${s.id}')">♡ Save</button></div>`).join(''):'<div class="empty">No matching demo entries. The full Gurbani index is not installed.</div>'}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function readSaved(){try{return JSON.parse(localStorage.getItem('savedItems')||'[]')}catch(e){return []}}
+function writeSaved(a){localStorage.setItem('savedItems',JSON.stringify(a))}
+function toggleSavedDemo(id){let a=readSaved();a=a.includes(id)?a.filter(x=>x!==id):a.concat(id);writeSaved(a);searchText()}
+function isReaderSaved(){return readSaved().includes('bani:'+currentBani)}
+function toggleReaderSave(){let a=readSaved(),id='bani:'+currentBani;a=a.includes(id)?a.filter(x=>x!==id):a.concat(id);writeSaved(a);updateReaderSave()}
+function updateReaderSave(){$('readerSave').textContent=isReaderSaved()?'♥ Saved':'♡ Save'}
+function renderSaved(){let a=readSaved();let rows=a.map(id=>{if(id.startsWith('bani:')){let i=Number(id.slice(5));return Number.isInteger(i)&&banis[i]?`<button class="wide" onclick="openReader(${i})">${escapeHtml(banis[i])}<small>Reader · text pack required</small></button>`:''}let s=demoIndex.find(x=>x.id===id);return s?`<div class="wide"><strong>${escapeHtml(s.title)}</strong><div class="pangti">${escapeHtml(s.text)}</div><button class="smallbtn" onclick="toggleSavedDemo('${s.id}')">Remove</button></div>`:''}).filter(Boolean);$('savedList').innerHTML=rows.length?rows.join(''):'<div class="empty">No favourites saved yet. Save a Bani from its reader or a demo search entry.</div>'}
+let count=Number(localStorage.getItem('simranCount')||0);function drawCount(){$('count').textContent=count.toLocaleString()}function addCount(){count++;localStorage.setItem('simranCount',String(count));drawCount()}function resetCount(){count=0;localStorage.setItem('simranCount','0');drawCount()}
+function savePages(){let p=Math.max(0,Math.min(1430,Number($('pages').value)||0));localStorage.setItem('pages',String(p));$('pages').value=p;$('progress').textContent=p+' / 1430';$('bar').style.width=(p/1430*100)+'%'}
+let fontSize=Math.max(19,Math.min(36,Number(localStorage.getItem('readerFontSize')||25)));
+function applyFont(){document.documentElement.style.setProperty('--reader-size',fontSize+'px');localStorage.setItem('readerFontSize',String(fontSize));updateFontLabel()}
+function changeFont(delta){fontSize=Math.max(19,Math.min(36,fontSize+delta*2));applyFont()}
+function updateFontLabel(){if($('fontLabel'))$('fontLabel').textContent='Text size: '+fontSize+' px'}
+renderBaniList();$('pages').value=localStorage.getItem('pages')||0;savePages();drawCount();applyFont();setAppLanguage(appLanguage);setMeaningLanguage(meaningLanguage);
+</script>
+</body></html>
